@@ -12,18 +12,18 @@
 import java.io.*;
 import java.util.*;
 
-public class Image
+public class ImagePGM
 {
     public int [][] pixels;
     public int depth,width,height;
 
-    public Image()
+    public ImagePGM()
     {
         pixels = new int[1500][1500];
         depth = width = height = 0;
     }
 
-    public Image(int inDepth, int inWidth, int inHeight)
+    public ImagePGM(int inDepth, int inWidth, int inHeight)
     {
         pixels = new int[inWidth][inHeight];
         width = inWidth;
