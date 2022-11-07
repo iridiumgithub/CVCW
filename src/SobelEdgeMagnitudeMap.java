@@ -5,7 +5,7 @@ public class SobelEdgeMagnitudeMap {
     public ImagePPM imagePPM;
 
     public SobelEdgeMagnitudeMap(ImagePPM imagePPM){
-        this.imagePPM = imagePPM;
+        imagePPM.
     }
 
     public ImagePGM function(){

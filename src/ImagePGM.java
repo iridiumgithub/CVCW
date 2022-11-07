@@ -109,4 +109,15 @@ public class ImagePGM
             System.out.println("ERROR: cannot write output file");
         }
     }
+
+    public void CopyPGM(ImagePGM imagePGM){
+        depth = imagePGM.depth;
+        width = imagePGM.width;
+        height = imagePGM.height;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                pixels[i][j] = imagePGM.pixels[i][j];
+            }
+        }
+    }
 }

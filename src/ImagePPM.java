@@ -99,4 +99,17 @@ public class ImagePPM {
             System.out.println("ERROR: cannot write output file");
         }
     }
+
+    public void CopyPPM(ImagePPM imagePPM){
+        depth = imagePPM.depth;
+        width = imagePPM.width;
+        height = imagePPM.height;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                for (int k = 0; k < 3; k++) {
+                    pixels[i][j][k] = imagePPM.pixels[i][j][k];
+                }
+            }
+        }
+    }
 }
