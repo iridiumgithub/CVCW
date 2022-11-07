@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
-      <change afterPath="$PROJECT_DIR$/src/CreateBrush.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PaintStrokes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_10_2022_13_33_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_30_10_2022_13_33__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImagePGM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePGM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImagePPM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePPM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreateBrush.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreateBrush.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,14 +33,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,8 +49,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666971738392</updated>
+      <workItem from="1667747356368" duration="14742000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
