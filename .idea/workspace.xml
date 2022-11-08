@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BillGates.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/BillGates.ppm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImagePGM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePGM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ImagePPM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePPM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PaintStrokes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaintStrokes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brushCurve.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushCurve.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brushEllipse.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushEllipse.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brushSquare.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushSquare.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/brushWobble.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushWobble.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/headlight1024.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/headlight1024.ppm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +51,17 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "E:/Code/CV",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Code\CVSW\SW" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Relaxation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Relaxation" />
@@ -72,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666971738392</updated>
       <workItem from="1667747356368" duration="17422000" />
-      <workItem from="1667925754267" duration="2182000" />
+      <workItem from="1667925754267" duration="12825000" />
     </task>
     <servers />
   </component>
@@ -98,11 +112,26 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java</url>
-          <line>7</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/ImagePPM.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="22" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="SobelEdgeMagnitudeMap" memberName="imagePPM" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="pixels" language="JAVA" />
+        <watch expression="pixels" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

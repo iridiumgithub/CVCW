@@ -31,6 +31,18 @@ public class ImagePGM
         depth = inDepth;
     }
 
+    public  ImagePGM(ImagePGM imagePGM){
+        pixels = new int[imagePGM.width][imagePGM.height];
+        width = imagePGM.width;
+        height = imagePGM.height;
+        depth = imagePGM.depth;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                pixels[i][j] = imagePGM.pixels[i][j];
+            }
+        }
+    }
+
     public void ReadPGM(String fileName)
     {
         String line;

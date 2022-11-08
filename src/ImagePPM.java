@@ -19,6 +19,20 @@ public class ImagePPM {
         depth = inDepth;
     }
 
+    public  ImagePPM(ImagePPM imagePPM){
+        depth = imagePPM.depth;
+        width = imagePPM.width;
+        height = imagePPM.height;
+        pixels = new int[width][height][3];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                for (int k = 0; k < 3; k++) {
+                    pixels[i][j][k] = imagePPM.pixels[i][j][k];
+                }
+            }
+        }
+    }
+
     public void ReadPPM(String fileName){
         String line;
         StringTokenizer st;
@@ -66,7 +80,8 @@ public class ImagePPM {
         } catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Error: image in "+fileName+" too big");
         } catch(FileNotFoundException e) {
-            System.out.println("Error: file "+fileName+" not found");
+            System.out.println("Error: file "+fileName+" not found ");
+            System.out.println(new File(".").getAbsolutePath());
         } catch(IOException e) {
             System.out.println("Error: end of stream encountered when reading "+fileName);
         }
@@ -97,16 +112,16 @@ public class ImagePPM {
         }
     }
 
-    public void CopyPPM(ImagePPM imagePPM){
-        depth = imagePPM.depth;
-        width = imagePPM.width;
-        height = imagePPM.height;
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                for (int k = 0; k < 3; k++) {
-                    pixels[i][j][k] = imagePPM.pixels[i][j][k];
-                }
-            }
-        }
-    }
+//    public void CopyPPM(ImagePPM imagePPM){
+//        depth = imagePPM.depth;
+//        width = imagePPM.width;
+//        height = imagePPM.height;
+//        for (int i = 0; i < width; i++) {
+//            for (int j = 0; j < height; j++) {
+//                for (int k = 0; k < 3; k++) {
+//                    pixels[i][j][k] = imagePPM.pixels[i][j][k];
+//                }
+//            }
+//        }
+//    }
 }
