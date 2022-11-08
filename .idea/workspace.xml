@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImagePGM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePGM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ImagePPM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePPM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PaintStrokes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaintStrokes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" afterDir="false" />
     </list>
@@ -21,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="oneWay" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -38,9 +44,25 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Code/CV",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Relaxation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Relaxation" />
+      <module name="SW" />
+      <option name="PROGRAM_PARAMETERS" value="BillGates.ppm brushWobble.pgm brushCurve.pgm 0.001" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Relaxation" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -50,6 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666971738392</updated>
       <workItem from="1667747356368" duration="17422000" />
+      <workItem from="1667925754267" duration="2182000" />
     </task>
     <servers />
   </component>
@@ -70,5 +93,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Complete the first question except the last step" />
     <option name="LAST_COMMIT_MESSAGE" value="Complete the first question except the last step" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -18,6 +18,8 @@ public class DifferenceOfGaussian {
             double[][] gaussian = gaussianCore(i);
 
         }
+        //need change
+        return null;
     }
 
     public int MaxPixels(int a,int b,int c){

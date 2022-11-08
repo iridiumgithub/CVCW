@@ -71,13 +71,10 @@ public class ImagePPM {
             System.out.println("Error: end of stream encountered when reading "+fileName);
         }
     }
-
-
     public void WritePPM(String fileName)
     {
         String line;
         StringTokenizer st;
-        int i;
 
         try {
             DataOutputStream out =

@@ -106,7 +106,7 @@ public class PaintStrokes {
                         }
                     }
                     //benefit
-                    if ()
+
                     //paint
                     for (int j = 0; j < imagePGMBrush.width; j++) {
                         for (int k = 0; k < imagePGMBrush.height; k++) {
