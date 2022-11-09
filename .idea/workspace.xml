@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BillGates.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/BillGates.ppm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImagePGM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePGM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImagePPM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePPM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sobelMag.pgm" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brushCurve.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushCurve.pgm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brushEllipse.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushEllipse.pgm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brushSquare.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushSquare.pgm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/brushWobble.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushWobble.pgm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/headlight1024.ppm" beforeDir="false" afterPath="$PROJECT_DIR$/headlight1024.ppm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666971738392</updated>
       <workItem from="1667747356368" duration="17422000" />
-      <workItem from="1667925754267" duration="12825000" />
+      <workItem from="1667925754267" duration="16363000" />
     </task>
     <servers />
   </component>
@@ -115,6 +106,21 @@
           <url>file://$PROJECT_DIR$/src/ImagePPM.java</url>
           <line>116</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />

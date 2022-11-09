@@ -13,6 +13,7 @@ public class SobelEdgeMagnitudeMap {
         ImagePGM[] GreenPyramid = new ImagePGM[7];
         ImagePGM[] BluePyramid = new ImagePGM[7];
         ImagePGM[] pyramid = new ImagePGM[7];
+        ImagePGM[] finalPyramid = new ImagePGM[7];
         //init
 //        for (int i = 0; i < 7; i++) {
             RedPyramid[0] = new ImagePGM();
@@ -71,7 +72,7 @@ public class SobelEdgeMagnitudeMap {
         //sobel
         double[][] sobelX = {
                 {1,0,-1},
-                {2,0,2},
+                {2,0,-2},
                 {1,0,-1}
         };
 
@@ -125,21 +126,85 @@ public class SobelEdgeMagnitudeMap {
             }
         }
 
+        //
+        for (int i = 0; i < levelNumber; i++) {
+            finalPyramid[i] = new ImagePGM();
+            finalPyramid[i].width = pyramid[0].width;
+            finalPyramid[i].height = pyramid[0].height;
+            finalPyramid[i].depth = pyramid[0].depth;
+        }
+
         //bilinear interpolation
+//        for (int i = levelNumber-1; i > 0; i--) {
+//            ImagePGM imagePGMtemp1 = new ImagePGM(pyramid[i]);
+//            for (int m = i; m > 0; m--) {
+//                if (pyramid[m].width*2 == pyramid[m-1].width){
+//                    ImagePGM imagePGMtemp = new ImagePGM(imagePGMtemp1.depth,imagePGMtemp1.width*2,imagePGMtemp1.height*2);
+//                    for (int j = 0; j < imagePGMtemp.width; j++) {
+//                        for (int k = 0; k < imagePGMtemp.height; k++) {
+//                            if(j%2==0 && k%2==0){
+//                                imagePGMtemp.pixels[j][k] = imagePGMtemp1.pixels[j/2][k/2];
+//                            }else if(j%2!=0 && k%2==0){
+//                                imagePGMtemp.pixels[j][k] = (imagePGMtemp1.pixels[j/2][k/2] + imagePGMtemp1.pixels[j/2 + 1][k/2])/2;
+//                            }else if(j%2==0 && k%2!=0){
+//                                imagePGMtemp.pixels[j][k] = (imagePGMtemp1.pixels[m/2][j/2] + imagePGMtemp1.pixels[j/2][k/2 + 1])/2;
+//                            }else{
+//                                imagePGMtemp.pixels[j][k] = ((imagePGMtemp1.pixels[m/2][j/2] + imagePGMtemp1.pixels[j/2][k/2 + 1])/2 +
+//                                        (imagePGMtemp1.pixels[j/2 + 1][k/2] + imagePGMtemp1.pixels[j/2 + 1][k/2 + 1])/2)/2;
+//                            }
+//                        }
+//                    }
+//                    for (int j = 0; j < pyramid[m].width*2; j++) {
+//                        for (int k = 0; k < pyramid[m].height*2; k++) {
+////                            pyramid[m].pixels[j][k] = (pyramid[m].pixels[j][k]+imagePGMtemp.pixels[j][k])/2;
+//                            imagePGMtemp1.pixels[j][k] = imagePGMtemp.pixels[j][k];
+//                        }
+//                    }
+//                }else {
+//                    ImagePGM imagePGMtemp = new ImagePGM(imagePGMtemp1.depth,imagePGMtemp1.width*2 + 1,imagePGMtemp1.height*2 +1);
+//                    for (int j = 0; j < imagePGMtemp.width-1; j++) {
+//                        for (int k = 0; k < imagePGMtemp.height-1; k++) {
+//                            if(j%2==0 && k%2==0){
+//                                imagePGMtemp.pixels[j][k] = imagePGMtemp1.pixels[j/2][k/2];
+//                            }else if(j%2!=0 && k%2==0){
+//                                imagePGMtemp.pixels[j][k] = (imagePGMtemp1.pixels[j/2][k/2] + imagePGMtemp1.pixels[j/2 + 1][k/2])/2;
+//                            }else if(j%2==0 && k%2!=0){
+//                                imagePGMtemp.pixels[j][k] = (imagePGMtemp1.pixels[j/2][k/2] + imagePGMtemp1.pixels[j/2][k/2 + 1])/2;
+//                            }else{
+//                                imagePGMtemp.pixels[j][k] = ((imagePGMtemp1.pixels[j/2][k/2] + imagePGMtemp1.pixels[j/2][k/2 + 1])/2 +
+//                                        (imagePGMtemp1.pixels[j/2 + 1][k/2] + imagePGMtemp1.pixels[k/2 + 1][k/2 + 1])/2)/2;
+//                            }
+//                        }
+//                    }
+//                    for (int j = 0; j < imagePGMtemp.width; j++) {
+//                        imagePGMtemp.pixels[j][imagePGMtemp.height-1] = imagePGMtemp.pixels[j][imagePGMtemp.height-2];
+//                    }
+//                    for (int j = 0; j < imagePGMtemp.height; j++) {
+//                        imagePGMtemp.pixels[imagePGMtemp.width-1][j] = imagePGMtemp.pixels[imagePGMtemp.width-2][j];
+//                    }
+//                    for (int j = 0; j < pyramid[m].width*2; j++) {
+//                        for (int k = 0; k < pyramid[m].height*2; k++) {
+//                            imagePGMtemp1.pixels[j][k] = imagePGMtemp.pixels[j][k];
+//                        }
+//                    }
+//                }
+//            }
+//        }
+        //bilinear interpolation pass 1
         for (int i = levelNumber-1; i > 0; i--) {
             if (pyramid[i].width*2 == pyramid[i-1].width){
                 ImagePGM imagePGMtemp = new ImagePGM(pyramid[i].depth,pyramid[i].width*2,pyramid[i].height*2);
                 for (int j = 0; j < imagePGMtemp.width; j++) {
                     for (int k = 0; k < imagePGMtemp.height; k++) {
-                        if(imagePGMtemp.width%2==0 && imagePGMtemp.height%2==0){
-                            imagePGMtemp.pixels[i][j] = pyramid[i].pixels[i/2][j/2];
-                        }else if(imagePGMtemp.width%2!=0 && imagePGMtemp.height%2==0){
-                            imagePGMtemp.pixels[i][j] = (pyramid[i].pixels[i/2][j/2] + pyramid[i].pixels[i/2 + 1][j/2])/2;
-                        }else if(imagePGMtemp.width%2==0 && imagePGMtemp.height%2!=0){
-                            imagePGMtemp.pixels[i][j] = (pyramid[i].pixels[i/2][j/2] + pyramid[i].pixels[i/2][j/2 + 1])/2;
+                        if(j%2==0 && k%2==0){
+                            imagePGMtemp.pixels[j][k] = pyramid[i].pixels[j/2][k/2];
+                        }else if(j%2!=0 && k%2==0){
+                            imagePGMtemp.pixels[j][k] = (pyramid[i].pixels[j/2][k/2] + pyramid[i].pixels[j/2 + 1][k/2])/2;
+                        }else if(j%2==0 && k%2!=0){
+                            imagePGMtemp.pixels[j][k] = (pyramid[i].pixels[j/2][k/2] + pyramid[i].pixels[j/2][k/2 + 1])/2;
                         }else{
-                            imagePGMtemp.pixels[i][j] = ((pyramid[i].pixels[i/2][j/2] + pyramid[i].pixels[i/2][j/2 + 1])/2 +
-                                    (pyramid[i].pixels[i/2 + 1][j/2] + pyramid[i].pixels[i/2 + 1][j/2 + 1])/2)/2;
+                            imagePGMtemp.pixels[j][k] = ((pyramid[i].pixels[j/2][k/2] + pyramid[i].pixels[j/2][k/2 + 1])/2 +
+                                    (pyramid[i].pixels[j/2 + 1][k/2] + pyramid[i].pixels[j/2 + 1][k/2 + 1])/2)/2;
                         }
                     }
                 }
@@ -152,15 +217,15 @@ public class SobelEdgeMagnitudeMap {
                 ImagePGM imagePGMtemp = new ImagePGM(pyramid[i].depth,pyramid[i].width*2 + 1,pyramid[i].height*2 +1);
                 for (int j = 0; j < imagePGMtemp.width-1; j++) {
                     for (int k = 0; k < imagePGMtemp.height-1; k++) {
-                        if(imagePGMtemp.width%2==0 && imagePGMtemp.height%2==0){
-                            imagePGMtemp.pixels[i][j] = pyramid[i].pixels[i/2][j/2];
-                        }else if(imagePGMtemp.width%2!=0 && imagePGMtemp.height%2==0){
-                            imagePGMtemp.pixels[i][j] = (pyramid[i].pixels[i/2][j/2] + pyramid[i].pixels[i/2 + 1][j/2])/2;
-                        }else if(imagePGMtemp.width%2==0 && imagePGMtemp.height%2!=0){
-                            imagePGMtemp.pixels[i][j] = (pyramid[i].pixels[i/2][j/2] + pyramid[i].pixels[i/2][j/2 + 1])/2;
+                        if(j%2==0 && k%2==0){
+                            imagePGMtemp.pixels[j][k] = pyramid[i].pixels[j/2][k/2];
+                        }else if(j%2!=0 && k%2==0){
+                            imagePGMtemp.pixels[j][k] = (pyramid[i].pixels[j/2][k/2] + pyramid[i].pixels[j/2 + 1][k/2])/2;
+                        }else if(j%2==0 && k%2!=0){
+                            imagePGMtemp.pixels[j][k] = (pyramid[i].pixels[j/2][k/2] + pyramid[i].pixels[j/2][k/2 + 1])/2;
                         }else{
-                            imagePGMtemp.pixels[i][j] = ((pyramid[i].pixels[i/2][j/2] + pyramid[i].pixels[i/2][j/2 + 1])/2 +
-                                    (pyramid[i].pixels[i/2 + 1][j/2] + pyramid[i].pixels[i/2 + 1][j/2 + 1])/2)/2;
+                            imagePGMtemp.pixels[j][k] = ((pyramid[i].pixels[j/2][k/2] + pyramid[i].pixels[j/2][k/2 + 1])/2 +
+                                    (pyramid[i].pixels[j/2 + 1][k/2] + pyramid[i].pixels[j/2 + 1][k/2 + 1])/2)/2;
                         }
                     }
                 }
