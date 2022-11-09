@@ -13,7 +13,9 @@ public class Relaxation {
         imagePPM.ReadPPM(PPMFileNameIn);
 //        ImagePGM imagePGM = new ImagePGM();
 //        imagePGM.ReadPGM(brushFileNameOne);
-        SobelEdgeMagnitudeMap sobelEdgeMagnitudeMap = new SobelEdgeMagnitudeMap(imagePPM);
-        sobelEdgeMagnitudeMap.function().WritePGM("sobelMag.pgm");
+//        SobelEdgeMagnitudeMap sobelEdgeMagnitudeMap = new SobelEdgeMagnitudeMap(imagePPM);
+//        sobelEdgeMagnitudeMap.function().WritePGM("sobelMag.pgm");
+        SobelEdgeOrientationMap sobelEdgeOrientationMap = new SobelEdgeOrientationMap(imagePPM);
+        sobelEdgeOrientationMap.function().WritePGM("sobelDir.pgm");
     }
 }

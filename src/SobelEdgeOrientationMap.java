@@ -2,17 +2,17 @@ public class SobelEdgeOrientationMap {
     public ImagePPM imagePPM;
 
     public SobelEdgeOrientationMap(ImagePPM imagePPM){
-        this.imagePPM = imagePPM;
+        this.imagePPM = new ImagePPM(imagePPM);
     }
 
     public ImagePGM function(){
         ImagePGM imagePGM = new ImagePGM(imagePPM.depth, imagePPM.width, imagePPM.height);
-        ImagePGM imagePGMBox = new ImagePGM(imagePPM.depth, imagePPM.width-2, imagePPM.height-2);
-        ImagePGM imagePGMSobel = new ImagePGM(imagePPM.depth, imagePPM.width-4, imagePPM.height-4);
+        ImagePGM imagePGMBox = new ImagePGM(imagePPM.depth, imagePPM.width-4, imagePPM.height-4);
+        ImagePGM imagePGMSobel = new ImagePGM(imagePPM.depth, imagePPM.width-6, imagePPM.height-6);
         // grayscale
-        for (int i = 0; i < imagePPM.width; i++) {
-            for (int j = 0; j < imagePPM.height; j++) {
-                imagePGM.pixels[i][j] = imagePPM.pixels[i][j][0]+imagePPM.pixels[i][j][1]+imagePPM.pixels[i][j][2];
+        for (int i = 0; i < imagePGM.width; i++) {
+            for (int j = 0; j < imagePGM.height; j++) {
+                imagePGM.pixels[i][j] = (imagePPM.pixels[i][j][0]+imagePPM.pixels[i][j][1]+imagePPM.pixels[i][j][2])/3;
             }
         }
 
@@ -36,14 +36,14 @@ public class SobelEdgeOrientationMap {
                     }
                 }
 
-                imagePGMBox.pixels[i][j] = tempBox;
+                imagePGMBox.pixels[i-2][j-2] = tempBox;
             }
         }
-
+//        imagePGMBox.WritePGM("test.pgm");
         //sobel
         double[][] sobelX = {
                 {1,0,-1},
-                {2,0,2},
+                {2,0,-2},
                 {1,0,-1}
         };
 
@@ -59,13 +59,25 @@ public class SobelEdgeOrientationMap {
                 int tempY = 0;
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
-                        tempX += imagePGMBox.pixels[i-1+k][i-1+l]*sobelX[k][l];
-                        tempY += imagePGMBox.pixels[i-1+k][i-1+l]*sobelY[k][l];
+                        tempX += imagePGMBox.pixels[i-1+k][j-1+l]*sobelX[k][l];
+                        tempY += imagePGMBox.pixels[i-1+k][j-1+l]*sobelY[k][l];
                     }
                 }
 
-                int result = (int)Math.sqrt(tempX*tempX+tempY*tempY);
-                imagePGMSobel.pixels[i-1][j-1] = result;
+//                int result = (int)Math.sqrt(tempX*tempX+tempY*tempY);
+                if(tempX == 0 && tempY>0){
+                    imagePGMSobel.pixels[i-1][j-1] = (int)Math.toDegrees(Math.PI/2);
+                }else if(tempX == 0 && tempY<0){
+                    imagePGMSobel.pixels[i-1][j-1] = (int)Math.toDegrees(-Math.PI/2);
+                }else if(tempX == 0 && tempY==0){
+                    imagePGMSobel.pixels[i-1][j-1] = 0;
+                }else{
+                    int result = (int)Math.toDegrees(Math.atan(tempY/tempX));
+                    imagePGMSobel.pixels[i-1][j-1] = result;
+                }
+
+
+
             }
         }
 
