@@ -93,7 +93,7 @@ public class SobelEdgeOrientationMap {
 
         for (int y = 0; y < imagePGMSobel.height; y++) {
             for (int x = 0; x < imagePGMSobel.width; x++) {
-                imagePGMSobel.pixels[x][y] = (int) ((imagePGMSobel.pixels[x][y] - min) * 255 / (max - min));
+                imagePGMSobel.pixels[x][y] = (imagePGMSobel.pixels[x][y] - min) * 255 / (max - min);
             }
         }
         return imagePGMSobel;

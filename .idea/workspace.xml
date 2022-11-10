@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CreateBrush.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreateBrush.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ImagePGM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePGM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PaintStrokes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaintStrokes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/test.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +54,7 @@
       <recent name="E:\Code\CVSW\SW" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Relaxation">
     <configuration name="Relaxation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Relaxation" />
       <module name="SW" />
@@ -65,9 +63,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="SW" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Relaxation" />
+        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -82,7 +88,7 @@
       <workItem from="1667747356368" duration="17422000" />
       <workItem from="1667925754267" duration="16654000" />
       <workItem from="1667954390977" duration="3372000" />
-      <workItem from="1668003232103" duration="16570000" />
+      <workItem from="1668003232103" duration="24310000" />
     </task>
     <servers />
   </component>

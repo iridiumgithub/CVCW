@@ -24,6 +24,7 @@ public class Relaxation {
 //        PaintStrokes paintStrokes = new PaintStrokes(imagePPM,imagePGMSobel);
 //        ImagePPM Backgroud = paintStrokes.PaintStrokes(density);
 //        Backgroud.WritePPM("result.ppm");
-
+        DifferenceOfGaussian differenceOfGaussian = new DifferenceOfGaussian(imagePPM);
+        differenceOfGaussian.function();
     }
 }
