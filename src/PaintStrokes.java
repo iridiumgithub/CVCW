@@ -1,30 +1,24 @@
 public class PaintStrokes {
-    ImagePPM imagePGMBackground;
+
     ImagePPM imagePPM;
-    ImagePGM imagePGM;
     ImagePGM imagePGMSobel;
 
     public PaintStrokes(ImagePPM imagePPM,ImagePGM imagePGMSobel){
-        this.imagePPM.depth = imagePPM.depth;
-        this.imagePGMSobel.depth = imagePGMSobel.depth;
-        this.imagePPM.width = imagePPM.width;
-        this.imagePGMSobel.width = imagePGMSobel.width;
-        this.imagePPM.height = imagePPM.height;
-        this.imagePGMSobel.height = imagePGMSobel.height;
-        for (int i = 0; i < imagePPM.width; i++) {
-            for (int j = 0; j < imagePPM.height; j++) {
-                this.imagePPM.pixels[i][j][0] = imagePPM.pixels[i][j][0];
-                this.imagePPM.pixels[i][j][1] = imagePPM.pixels[i][j][1];
-                this.imagePPM.pixels[i][j][2] = imagePPM.pixels[i][j][2];
-                this.imagePGMBackground.pixels[i][j][0] = 255;
-                this.imagePGMBackground.pixels[i][j][1] = 255;
-                this.imagePGMBackground.pixels[i][j][2] = 255;
-                this.imagePGMSobel.pixels[i][j] = imagePGMSobel.pixels[i][j];
-            }
-        }
+        this.imagePPM = new ImagePPM(imagePPM);
+        this.imagePGMSobel = new ImagePGM(imagePGMSobel);
+
     }
 
-    public void PaintStrokes(double density){
+    public ImagePPM PaintStrokes(double density){
+        ImagePPM imagePGMBackground = new ImagePPM(imagePPM.depth,imagePPM.width,imagePPM.height);
+        for (int i = 0; i < imagePPM.width; i++) {
+            for (int j = 0; j < imagePPM.height; j++) {
+                imagePGMBackground.pixels[i][j][0] = 255;
+                imagePGMBackground.pixels[i][j][1] = 255;
+                imagePGMBackground.pixels[i][j][2] = 255;
+            }
+        }
+        ImagePGM imagePGM = new ImagePGM(imagePPM.depth,imagePPM.width,imagePPM.height);
         ImagePGM imagePGMSobelOrientation = new ImagePGM(imagePPM.depth,imagePPM.width,imagePPM.height);
         // grayscale
         for (int i = 0; i < imagePPM.width; i++) {
@@ -57,7 +51,21 @@ public class PaintStrokes {
                 }
 
                 int orientationResult = (int) Math.round(Math.toDegrees(Math.atan(tempY/tempX))/22.5);
-                imagePGMSobelOrientation.pixels[i-1][j-1] = orientationResult;
+                if(orientationResult < 0){
+                    imagePGMSobelOrientation.pixels[i][j] = 16 + orientationResult;
+                }else {
+                    imagePGMSobelOrientation.pixels[i][j] = orientationResult;
+                }
+                imagePGMSobelOrientation.pixels[0][0] = imagePGMSobelOrientation.pixels[1][1];
+                imagePGMSobelOrientation.pixels[0][imagePGMBackground.height-1] = imagePGMSobelOrientation.pixels[1][imagePGMBackground.height-2];
+                imagePGMSobelOrientation.pixels[imagePGMBackground.width-1][0] = imagePGMSobelOrientation.pixels[imagePGMBackground.width-2][1];
+                imagePGMSobelOrientation.pixels[imagePGMBackground.width-1][imagePGMBackground.height-1] = imagePGMSobelOrientation.pixels[imagePGMBackground.width-2][imagePGMBackground.height-2];
+                for (int k = 1; k < imagePGMBackground.width-1; k++) {
+                    imagePGMSobelOrientation.pixels[k][0] = imagePGMSobelOrientation.pixels[k][1];
+                }
+                for (int k = 1; k < imagePGMBackground.height-1; k++) {
+                    imagePGMSobelOrientation.pixels[0][k] = imagePGMSobelOrientation.pixels[1][k];
+                }
             }
         }
 
@@ -71,25 +79,38 @@ public class PaintStrokes {
                 position[i][1] = (int)(Math.random()*(imagePGMSobel.height));
             }
             //brush
+            ImagePPM imagePPMIntermediate = new ImagePPM(imagePPM.depth,imagePPM.width,imagePPM.height);
+            for (int i = 0; i < imagePPM.width; i++) {
+                for (int j = 0; j < imagePPM.height; j++) {
+                    imagePGMBackground.pixels[i][j][0] = 255;
+                    imagePGMBackground.pixels[i][j][1] = 255;
+                    imagePGMBackground.pixels[i][j][2] = 255;
+                }
+            }
             for (int i = 0; i < N; i++) {
                 //jedge
                 if (imagePGMSobel.pixels[position[i][0]][position[i][1]] >= (5-size)*51 && imagePGMSobel.pixels[position[i][0]][position[i][1]] < (6-size) * 51) {
                     //select
                     ImagePGM imagePGMBrush = new ImagePGM();
-                    String brushName = "brush-"+size+"-"+imagePGMSobelOrientation.pixels[position[i][0]][position[i][1]];
+                    String brushName = "brush-"+size+"-"+imagePGMSobelOrientation.pixels[position[i][0]][position[i][1]]+".PGM";
                     imagePGMBrush.ReadPGM(brushName);
                     int avgColor[] = new int[3];
                     int red = 0,green = 0,blue = 0;
                     int number = 0;
                     for (int j = 0; j < imagePGMBrush.width; j++) {
                         for (int k = 0; k < imagePGMBrush.height; k++) {
-                            if(imagePGMBrush.pixels[i][j] == 0){
-                                red += imagePPM.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][0];
-                                green += imagePPM.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][1];
-                                blue += imagePPM.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][2];
-                                number++;
+                            if(imagePGMBrush.pixels[j][k] == 0){
+                                if (j-imagePGMBrush.width/2 + position[i][0]>=0 && k-imagePGMBrush.height/2 + position[i][1] >=0 && j-imagePGMBrush.width/2 + position[i][0] < imagePGMBackground.width && k-imagePGMBrush.height/2 + position[i][1] < imagePGMBackground.height){
+                                    red += imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0];
+                                    green += imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1];
+                                    blue += imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2];
+                                    number++;
+                                }
                             }
                         }
+                    }
+                    if(number == 0){
+                        break;
                     }
                     avgColor[0] = (int)(red / number);
                     avgColor[1] = (int)(green / number);
@@ -98,10 +119,12 @@ public class PaintStrokes {
                     int dissimilarity[] = {0,0,0};
                     for (int j = 0; j < imagePGMBrush.width; j++) {
                         for (int k = 0; k < imagePGMBrush.height; k++) {
-                            if(imagePGMBrush.pixels[i][j] == 0){
-                                dissimilarity[0] += Math.abs(avgColor[0] - imagePPM.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][0]);
-                                dissimilarity[1] += Math.abs(avgColor[1] - imagePPM.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][1]);
-                                dissimilarity[2] += Math.abs(avgColor[2] - imagePPM.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][2]);
+                            if(imagePGMBrush.pixels[j][k] == 0){
+                                if (j-imagePGMBrush.width/2 + position[i][0]>=0 && k-imagePGMBrush.height/2 + position[i][1] >=0 && j-imagePGMBrush.width/2 + position[i][0] < imagePGMBackground.width && k-imagePGMBrush.height/2 + position[i][1] < imagePGMBackground.height){
+                                    dissimilarity[0] += Math.abs(avgColor[0] - imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0]);
+                                    dissimilarity[1] += Math.abs(avgColor[1] - imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1]);
+                                    dissimilarity[2] += Math.abs(avgColor[2] - imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2]);
+                                }
                             }
                         }
                     }
@@ -110,15 +133,22 @@ public class PaintStrokes {
                     //paint
                     for (int j = 0; j < imagePGMBrush.width; j++) {
                         for (int k = 0; k < imagePGMBrush.height; k++) {
-                            if(imagePGMBrush.pixels[i][j] == 0){
-                                imagePGMBackground.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
-                                imagePGMBackground.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
-                                imagePGMBackground.pixels[i-imagePGMBrush.width/2 + position[i][0]][j-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
+                            if(imagePGMBrush.pixels[j][k] == 0){
+                                if (j-imagePGMBrush.width/2 + position[i][0]>=0 && k-imagePGMBrush.height/2 + position[i][1] >=0 && j-imagePGMBrush.width/2 + position[i][0] < imagePGMBackground.width && k-imagePGMBrush.height/2 + position[i][1] < imagePGMBackground.height){
+                                    imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
+                                    imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
+                                    imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
+                                    imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
+                                    imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
+                                    imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
+                                }
                             }
                         }
                     }
+                    imagePPMIntermediate.WritePPM("intermediate-"+(size-1)+".pgm");
                 }
             }
         }
+        return imagePGMBackground;
     }
 }

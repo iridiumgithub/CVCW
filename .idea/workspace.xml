@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreateBrush.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreateBrush.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ImagePGM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ImagePGM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PaintStrokes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaintStrokes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/test.pgm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +81,8 @@
       <updated>1666971738392</updated>
       <workItem from="1667747356368" duration="17422000" />
       <workItem from="1667925754267" duration="16654000" />
-      <workItem from="1667954390977" duration="1404000" />
+      <workItem from="1667954390977" duration="3372000" />
+      <workItem from="1668003232103" duration="16570000" />
     </task>
     <servers />
   </component>
