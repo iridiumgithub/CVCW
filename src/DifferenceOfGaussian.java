@@ -82,7 +82,7 @@ public class DifferenceOfGaussian {
         for (int j = 0; j < imagePGM.width; j++) {
             for (int k = 0; k < imagePGM.height; k++) {
                 if (DDoG.pixels[j][k] > 64){
-                    DDoG.pixels[j][k] = 254;
+                    DDoG.pixels[j][k] = 255;
                 }else{
                     DDoG.pixels[j][k] = 0;
                 }

@@ -18,7 +18,7 @@ public class CreateBrush {
                 for (int k = 0; k < imagePGM.height; k++) {
                     int m = k/5;
                     if(((j%5)<i) && ((k%5)<i)){
-                        imagePGMSize.pixels[j-n*(5-i)][k-m*(5-i)] = imagePGM.pixels[j][k]*254;
+                        imagePGMSize.pixels[j-n*(5-i)][k-m*(5-i)] = imagePGM.pixels[j][k]*255;
                     }
                 }
             }

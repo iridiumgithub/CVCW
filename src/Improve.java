@@ -73,7 +73,7 @@ public class Improve {
             for (int i = 0; i < N; i++) {
                 //jedge
                 if (imagePGMSobel.pixels[position.positionxy[i][0]][position.positionxy[i][1]] >= (5 - size) * 51 && imagePGMSobel.pixels[position.positionxy[i][0]][position.positionxy[i][1]] < (6 - size) * 51) {
-                    if (imghresh.pixels[position.positionxy[i][0]][position.positionxy[i][1]] == 254){
+                    if (imghresh.pixels[position.positionxy[i][0]][position.positionxy[i][1]] == 255){
                         //select
                         ImagePGM imagePGMBrush = new ImagePGM();
                         String brushName = "brush-" + size + "-" + imagePGMSobelOrientation.pixels[position.positionxy[i][0]][position.positionxy[i][1]] + ".PGM";
