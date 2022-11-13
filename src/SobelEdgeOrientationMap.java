@@ -18,11 +18,11 @@ public class SobelEdgeOrientationMap {
 
         //a box filter
         double[][] boxFilter = {
-                {0.04,0.04,0.04,0.04,0.04},
-                {0.04,0.04,0.04,0.04,0.04},
-                {0.04,0.04,0.04,0.04,0.04},
-                {0.04,0.04,0.04,0.04,0.04},
-                {0.04,0.04,0.04,0.04,0.04}
+                {1,1,1,1,1},
+                {1,1,1,1,1},
+                {1,1,1,1,1},
+                {1,1,1,1,1},
+                {1,1,1,1,1},
         };
 
 
@@ -32,11 +32,11 @@ public class SobelEdgeOrientationMap {
 
                 for (int k = 0; k < 5; k++) {
                     for (int l = 0; l < 5; l++) {
-                        tempBox += (int)(imagePGM.pixels[i-2+k][j-2+l] * boxFilter[k][l]);
+                        tempBox += imagePGM.pixels[i-2+k][j-2+l];
                     }
                 }
 
-                imagePGMBox.pixels[i-2][j-2] = tempBox;
+                imagePGMBox.pixels[i-2][j-2] = tempBox/25;
             }
         }
 //        imagePGMBox.WritePGM("test.pgm");
@@ -72,7 +72,7 @@ public class SobelEdgeOrientationMap {
                 }else if(tempX == 0 && tempY==0){
                     imagePGMSobel.pixels[i-1][j-1] = 0;
                 }else{
-                    int result = (int)Math.toDegrees(Math.atan(tempY/tempX));
+                    int result = (int)Math.toDegrees(Math.atan2(tempX,tempY));
                     imagePGMSobel.pixels[i-1][j-1] = result;
                 }
 

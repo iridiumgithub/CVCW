@@ -25,13 +25,13 @@ public class DifferenceOfGaussian {
 
             for (int j = 0; j < imagePGM.width-2; j++) {
                 for (int k = 0; k < imagePGM.height-2; k++) {
-                    int tempg = 0;
+                    double tempg = 0;
                     for (int l = 0; l < 3; l++) {
                         for (int m = 0; m < 3; m++) {
                             tempg += gaussian[l][m]*gaussianP[0].pixels[j+l][k+m];
                         }
                     }
-                    gaussianP[i+1].pixels[j+1][k+1] = tempg;
+                    gaussianP[i+1].pixels[j+1][k+1] = (int)(tempg/10000);
                 }
             }
             gaussianP[i+1].pixels[0][0] = gaussianP[i+1].pixels[1][1];
@@ -113,7 +113,7 @@ public class DifferenceOfGaussian {
         }
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                C[i][j] = C[i][j] / sum;
+                C[i][j] = C[i][j] / sum*10000;
             }
         }
         return C;

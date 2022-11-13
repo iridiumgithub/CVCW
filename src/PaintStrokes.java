@@ -9,7 +9,7 @@ public class PaintStrokes {
 
     }
 
-    public ImagePPM PaintStrokes(double density){
+    public void PaintStrokes(double density,Position[] p){
         ImagePPM imagePGMBackground = new ImagePPM(imagePPM.depth,imagePPM.width,imagePPM.height);
         for (int i = 0; i < imagePPM.width; i++) {
             for (int j = 0; j < imagePPM.height; j++) {
@@ -50,7 +50,7 @@ public class PaintStrokes {
                     }
                 }
 
-                int orientationResult = (int) Math.round(Math.toDegrees(Math.atan(tempY/tempX))/22.5);
+                int orientationResult = (int) Math.round(Math.toDegrees(Math.atan2(tempX,tempY))/22.5);
                 if(orientationResult < 0){
                     imagePGMSobelOrientation.pixels[i][j] = 16 + orientationResult;
                 }else {
@@ -78,6 +78,7 @@ public class PaintStrokes {
                 position[i][0] = (int)(Math.random()*(imagePGMSobel.width));
                 position[i][1] = (int)(Math.random()*(imagePGMSobel.height));
             }
+            p[size-1] = new Position(position);
             //brush
             ImagePPM imagePPMIntermediate = new ImagePPM(imagePPM.depth,imagePPM.width,imagePPM.height);
             for (int i = 0; i < imagePPM.width; i++) {
@@ -149,6 +150,6 @@ public class PaintStrokes {
                 }
             }
         }
-        return imagePGMBackground;
+        imagePGMBackground.WritePPM("result.ppm");
     }
 }

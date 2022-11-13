@@ -13,18 +13,20 @@ public class Relaxation {
         imagePPM.ReadPPM(PPMFileNameIn);
         ImagePGM imagePGMBrush1 = new ImagePGM();
         imagePGMBrush1.ReadPGM(brushFileNameOne);
+        Position[] positions = new Position[5];
 //        SobelEdgeMagnitudeMap sobelEdgeMagnitudeMap = new SobelEdgeMagnitudeMap(imagePPM);
 //        sobelEdgeMagnitudeMap.function().WritePGM("sobelMag.pgm");
 //        SobelEdgeOrientationMap sobelEdgeOrientationMap = new SobelEdgeOrientationMap(imagePPM);
 //        sobelEdgeOrientationMap.function().WritePGM("sobelDir.pgm");
 //        CreateBrush createBrush1 = new CreateBrush(imagePGMBrush1);
 //        createBrush1.createBrushs();
-//        ImagePGM imagePGMSobel = new ImagePGM();
-//        imagePGMSobel.ReadPGM("sobelMag.pgm");
-//        PaintStrokes paintStrokes = new PaintStrokes(imagePPM,imagePGMSobel);
-//        ImagePPM Backgroud = paintStrokes.PaintStrokes(density);
+        ImagePGM imagePGMSobel = new ImagePGM();
+        imagePGMSobel.ReadPGM("sobelMag.pgm");
+        PaintStrokes paintStrokes = new PaintStrokes(imagePPM,imagePGMSobel);
+        paintStrokes.PaintStrokes(density,positions);
 //        Backgroud.WritePPM("result.ppm");
-        DifferenceOfGaussian differenceOfGaussian = new DifferenceOfGaussian(imagePPM);
-        differenceOfGaussian.function();
+//        DifferenceOfGaussian differenceOfGaussian = new DifferenceOfGaussian(imagePPM);
+//        differenceOfGaussian.function();
+
     }
 }

@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2f74c8b-1f20-429c-9d51-b5bca275be16" name="Changes" comment="Complete the first question except the last step">
+      <change afterPath="$PROJECT_DIR$/src/Improve.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DoG.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/DoG.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DoGthresh.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/DoGthresh.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brushCurve.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushCurve.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brushEllipse.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushEllipse.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brushSquare.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushSquare.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/brushWobble.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/brushWobble.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sobelDir.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/sobelDir.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sobelMag.pgm" beforeDir="false" afterPath="$PROJECT_DIR$/sobelMag.pgm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sobelMag1.pgm" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifferenceOfGaussian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PaintStrokes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PaintStrokes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Relaxation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Relaxation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SobelEdgeOrientationMap.java" afterDir="false" />
     </list>
@@ -70,6 +82,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Relaxation" />
+      <item itemvalue="Application.test" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Relaxation" />
@@ -88,7 +104,7 @@
       <workItem from="1667747356368" duration="17422000" />
       <workItem from="1667925754267" duration="16654000" />
       <workItem from="1667954390977" duration="3372000" />
-      <workItem from="1668003232103" duration="24310000" />
+      <workItem from="1668003232103" duration="41379000" />
     </task>
     <servers />
   </component>
@@ -127,6 +143,16 @@
           <url>file://$PROJECT_DIR$/src/SobelEdgeMagnitudeMap.java</url>
           <line>139</line>
           <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DifferenceOfGaussian.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DifferenceOfGaussian.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
