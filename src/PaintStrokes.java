@@ -6,7 +6,6 @@ public class PaintStrokes {
     public PaintStrokes(ImagePPM imagePPM,ImagePGM imagePGMSobel){
         this.imagePPM = new ImagePPM(imagePPM);
         this.imagePGMSobel = new ImagePGM(imagePGMSobel);
-
     }
 
     public void PaintStrokes(double density,Position[] p){
@@ -97,6 +96,7 @@ public class PaintStrokes {
                     imagePGMBrush.ReadPGM(brushName);
                     int avgColor[] = new int[3];
                     int red = 0,green = 0,blue = 0;
+                    int red0 = 0,green0 = 0,blue0 = 0;
                     int number = 0;
                     for (int j = 0; j < imagePGMBrush.width; j++) {
                         for (int k = 0; k < imagePGMBrush.height; k++) {
@@ -105,6 +105,9 @@ public class PaintStrokes {
                                     red += imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0];
                                     green += imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1];
                                     blue += imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2];
+                                    red0 += imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0];
+                                    green0 += imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1];
+                                    blue0 += imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2];
                                     number++;
                                 }
                             }
@@ -129,19 +132,32 @@ public class PaintStrokes {
                             }
                         }
                     }
-                    //benefit
-
-                    //paint
+                    int dissimilarity0[] = {0,0,0};
                     for (int j = 0; j < imagePGMBrush.width; j++) {
                         for (int k = 0; k < imagePGMBrush.height; k++) {
                             if(imagePGMBrush.pixels[j][k] == 0){
                                 if (j-imagePGMBrush.width/2 + position[i][0]>=0 && k-imagePGMBrush.height/2 + position[i][1] >=0 && j-imagePGMBrush.width/2 + position[i][0] < imagePGMBackground.width && k-imagePGMBrush.height/2 + position[i][1] < imagePGMBackground.height){
-                                    imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
-                                    imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
-                                    imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
-                                    imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
-                                    imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
-                                    imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
+                                    dissimilarity0[0] += Math.abs(red0/number - imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0]);
+                                    dissimilarity0[1] += Math.abs(green0/number - imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1]);
+                                    dissimilarity0[2] += Math.abs(blue0/number - imagePPM.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2]);
+                                }
+                            }
+                        }
+                    }
+                    //benefit
+                    if(dissimilarity0[0] + dissimilarity0[1] + dissimilarity0[2] > dissimilarity[0] + dissimilarity[1] + dissimilarity[2]){
+                        //paint
+                        for (int j = 0; j < imagePGMBrush.width; j++) {
+                            for (int k = 0; k < imagePGMBrush.height; k++) {
+                                if(imagePGMBrush.pixels[j][k] == 0){
+                                    if (j-imagePGMBrush.width/2 + position[i][0]>=0 && k-imagePGMBrush.height/2 + position[i][1] >=0 && j-imagePGMBrush.width/2 + position[i][0] < imagePGMBackground.width && k-imagePGMBrush.height/2 + position[i][1] < imagePGMBackground.height){
+                                        imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
+                                        imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
+                                        imagePGMBackground.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
+                                        imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][0] = avgColor[0];
+                                        imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][1] = avgColor[1];
+                                        imagePPMIntermediate.pixels[j-imagePGMBrush.width/2 + position[i][0]][k-imagePGMBrush.height/2 + position[i][1]][2] = avgColor[2];
+                                    }
                                 }
                             }
                         }

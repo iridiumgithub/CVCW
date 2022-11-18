@@ -7,7 +7,7 @@ public class Improve {
         this.imagePGMSobel = new ImagePGM(imagePGMSobel);
     }
 
-    public void function(ImagePGM brush2,ImagePGM imghresh,Position[] positions){
+    public void function(ImagePGM brush2,ImagePGM imgthresh,Position[] positions){
         ImagePPM imagePGMBackground = new ImagePPM(imagePPM.depth,imagePPM.width,imagePPM.height);
         for (int i = 0; i < imagePPM.width; i++) {
             for (int j = 0; j < imagePPM.height; j++) {
@@ -73,13 +73,14 @@ public class Improve {
             for (int i = 0; i < N; i++) {
                 //jedge
                 if (imagePGMSobel.pixels[position.positionxy[i][0]][position.positionxy[i][1]] >= (5 - size) * 51 && imagePGMSobel.pixels[position.positionxy[i][0]][position.positionxy[i][1]] < (6 - size) * 51) {
-                    if (imghresh.pixels[position.positionxy[i][0]][position.positionxy[i][1]] == 255){
+                    if (imgthresh.pixels[position.positionxy[i][0]][position.positionxy[i][1]] == 255){
                         //select
                         ImagePGM imagePGMBrush = new ImagePGM();
                         String brushName = "brush-" + size + "-" + imagePGMSobelOrientation.pixels[position.positionxy[i][0]][position.positionxy[i][1]] + ".PGM";
                         imagePGMBrush.ReadPGM(brushName);
                         int avgColor[] = new int[3];
                         int red = 0, green = 0, blue = 0;
+                        int red0 = 0,green0 = 0,blue0 = 0;
                         int number = 0;
                         for (int j = 0; j < imagePGMBrush.width; j++) {
                             for (int k = 0; k < imagePGMBrush.height; k++) {
@@ -88,6 +89,9 @@ public class Improve {
                                         red += imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0];
                                         green += imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1];
                                         blue += imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2];
+                                        red0 += imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0];
+                                        green0 += imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1];
+                                        blue0 += imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2];
                                         number++;
                                     }
                                 }
@@ -112,16 +116,29 @@ public class Improve {
                                 }
                             }
                         }
-                        //benefit
-
-                        //paint
+                        int dissimilarity0[] = {0, 0, 0};
                         for (int j = 0; j < imagePGMBrush.width; j++) {
                             for (int k = 0; k < imagePGMBrush.height; k++) {
                                 if (imagePGMBrush.pixels[j][k] == 0) {
                                     if (j - imagePGMBrush.width / 2 + position.positionxy[i][0] >= 0 && k - imagePGMBrush.height / 2 + position.positionxy[i][1] >= 0 && j - imagePGMBrush.width / 2 + position.positionxy[i][0] < imagePGMBackground.width && k - imagePGMBrush.height / 2 + position.positionxy[i][1] < imagePGMBackground.height) {
-                                        imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0] = avgColor[0];
-                                        imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1] = avgColor[1];
-                                        imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2] = avgColor[2];
+                                        dissimilarity0[0] += Math.abs(red0/number - imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0]);
+                                        dissimilarity0[1] += Math.abs(green0/number - imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1]);
+                                        dissimilarity0[2] += Math.abs(blue0/number - imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2]);
+                                    }
+                                }
+                            }
+                        }
+                        //benefit
+                        if(dissimilarity0[0] + dissimilarity0[1] + dissimilarity0[2] > dissimilarity[0] + dissimilarity[1] + dissimilarity[2]){
+                            //paint
+                            for (int j = 0; j < imagePGMBrush.width; j++) {
+                                for (int k = 0; k < imagePGMBrush.height; k++) {
+                                    if (imagePGMBrush.pixels[j][k] == 0) {
+                                        if (j - imagePGMBrush.width / 2 + position.positionxy[i][0] >= 0 && k - imagePGMBrush.height / 2 + position.positionxy[i][1] >= 0 && j - imagePGMBrush.width / 2 + position.positionxy[i][0] < imagePGMBackground.width && k - imagePGMBrush.height / 2 + position.positionxy[i][1] < imagePGMBackground.height) {
+                                            imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0] = avgColor[0];
+                                            imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1] = avgColor[1];
+                                            imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2] = avgColor[2];
+                                        }
                                     }
                                 }
                             }
@@ -140,13 +157,14 @@ public class Improve {
             for (int i = 0; i < N; i++) {
                 //jedge
                 if (imagePGMSobel.pixels[position.positionxy[i][0]][position.positionxy[i][1]] >= (5 - size) * 51 && imagePGMSobel.pixels[position.positionxy[i][0]][position.positionxy[i][1]] < (6 - size) * 51) {
-                    if (imghresh.pixels[position.positionxy[i][0]][position.positionxy[i][1]] == 0){
+                    if (imgthresh.pixels[position.positionxy[i][0]][position.positionxy[i][1]] == 0){
                         //select
                         ImagePGM imagePGMBrush = new ImagePGM();
                         String brushName = "brush-" + size + "-" + imagePGMSobelOrientation.pixels[position.positionxy[i][0]][position.positionxy[i][1]] + ".PGM";
                         imagePGMBrush.ReadPGM(brushName);
                         int avgColor[] = new int[3];
                         int red = 0, green = 0, blue = 0;
+                        int red0 = 0,green0 = 0,blue0 = 0;
                         int number = 0;
                         for (int j = 0; j < imagePGMBrush.width; j++) {
                             for (int k = 0; k < imagePGMBrush.height; k++) {
@@ -155,6 +173,9 @@ public class Improve {
                                         red += imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0];
                                         green += imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1];
                                         blue += imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2];
+                                        red0 += imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0];
+                                        green0 += imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1];
+                                        blue0 += imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2];
                                         number++;
                                     }
                                 }
@@ -179,16 +200,29 @@ public class Improve {
                                 }
                             }
                         }
-                        //benefit
-
-                        //paint
+                        int dissimilarity0[] = {0, 0, 0};
                         for (int j = 0; j < imagePGMBrush.width; j++) {
                             for (int k = 0; k < imagePGMBrush.height; k++) {
                                 if (imagePGMBrush.pixels[j][k] == 0) {
                                     if (j - imagePGMBrush.width / 2 + position.positionxy[i][0] >= 0 && k - imagePGMBrush.height / 2 + position.positionxy[i][1] >= 0 && j - imagePGMBrush.width / 2 + position.positionxy[i][0] < imagePGMBackground.width && k - imagePGMBrush.height / 2 + position.positionxy[i][1] < imagePGMBackground.height) {
-                                        imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0] = avgColor[0];
-                                        imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1] = avgColor[1];
-                                        imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2] = avgColor[2];
+                                        dissimilarity0[0] += Math.abs(red0/number - imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0]);
+                                        dissimilarity0[1] += Math.abs(green0/number - imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1]);
+                                        dissimilarity0[2] += Math.abs(blue0/number - imagePPM.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2]);
+                                    }
+                                }
+                            }
+                        }
+                        //benefit
+                        if(dissimilarity0[0] + dissimilarity0[1] + dissimilarity0[2] > dissimilarity[0] + dissimilarity[1] + dissimilarity[2]){
+                            //paint
+                            for (int j = 0; j < imagePGMBrush.width; j++) {
+                                for (int k = 0; k < imagePGMBrush.height; k++) {
+                                    if (imagePGMBrush.pixels[j][k] == 0) {
+                                        if (j - imagePGMBrush.width / 2 + position.positionxy[i][0] >= 0 && k - imagePGMBrush.height / 2 + position.positionxy[i][1] >= 0 && j - imagePGMBrush.width / 2 + position.positionxy[i][0] < imagePGMBackground.width && k - imagePGMBrush.height / 2 + position.positionxy[i][1] < imagePGMBackground.height) {
+                                            imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][0] = avgColor[0];
+                                            imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][1] = avgColor[1];
+                                            imagePGMBackground.pixels[j - imagePGMBrush.width / 2 + position.positionxy[i][0]][k - imagePGMBrush.height / 2 + position.positionxy[i][1]][2] = avgColor[2];
+                                        }
                                     }
                                 }
                             }

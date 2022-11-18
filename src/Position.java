@@ -1,6 +1,10 @@
 public class Position {
     int[][] positionxy;
 
+    public Position(){
+
+    }
+
     public Position(int[][] a){
         positionxy = new int[a.length][2];
         for (int i = 0; i < a.length; i++) {
